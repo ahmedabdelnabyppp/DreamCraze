@@ -1,0 +1,7 @@
+<app-navbar></app-navbar>
+<main [@routingAnimation]="outletRef.isActivated? outletRef.activatedRoute:''">
+    <router-outlet #outletRef="outlet"></router-outlet>
+</main>
+<app-product-status></app-product-status>
+<app-footer></app-footer>
+

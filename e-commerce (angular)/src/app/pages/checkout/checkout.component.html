@@ -1,0 +1,264 @@
+<section *ngIf="!orderData"></section>
+
+<section *ngIf="orderData">
+    <div class="max-w-[85rem] px-8   mx-auto">
+        <p class="my-2">Customer</p>
+        <div class="grid sm:grid-cols-3 border-y border-gray-200">
+            <div
+                class="p-4 md:p-5 relative before:absolute before:top-0 before:start-0 before:w-full before:h-px sm:before:w-px sm:before:h-full before:bg-gray-200 before:first:bg-transparent">
+                <div>
+                    <div class="mt-3">
+                        <div class="flex items-center gap-x-2">
+                            <svg class="flex-shrink-0 size-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                            <p class="text-xs uppercase tracking-wide text-gray-900">
+                                Contact info
+                            </p>
+                        </div>
+                        <div class="mt-1 lg:flex lg:justify-between lg:items-center">
+                            <div class="flex items-center space-x-1 mt-1">
+                                <i class='bx bx-envelope text-gray-500  '></i>
+
+                                <span class="text-[14px] font-semibold">
+                                    {{emailUser}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="p-4 md:p-5 relative before:absolute before:top-0 before:start-0 before:w-full before:h-px sm:before:w-px sm:before:h-full before:bg-gray-200 before:first:bg-transparent">
+                <div>
+                    <div class="mt-3">
+                        <div class="flex items-center gap-x-2">
+                            <i class='bx bx-map text-gray-500 text-xl'></i>
+                            <p class="text-[13px] uppercase tracking-wide text-gray-900">
+                                Adderes
+                            </p>
+                        </div>
+                        <div class="mt-1 lg:flex lg:justify-between lg:items-center">
+
+                            <div class="flex text-gray-800 font-semibold flex-col px-3  space-y-1 mt-1">
+                                <span class="text-slate-900 text-[16px] font-semibold ">
+                                    {{addressUserIsActive[0]?.country}}/{{addressUserIsActive[0]?.city}}</span>
+                                <span class="text-[14px] text-gray-500 ">
+                                    {{addressUserIsActive[0]?.street}}</span>
+                                <div
+                                    class="text-red-700 flex justify-between items-center text-[14px] bg-yellow-50 rounded-xl shadow-sm px-2 py-1  font-semibold">
+                                    <span>Landmark : {{addressUserIsActive[0]?.landmark}}</span>
+                                    <button (click)="goToAccount()"
+                                        class="hover:bg-pink-600 px-2 py-0.5 rounded-md text-sm bg-black text-white shadow-sm">Manage</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="p-4 md:p-5 relative before:absolute before:top-0 before:start-0 before:w-full before:h-px sm:before:w-px sm:before:h-full before:bg-gray-200 before:first:bg-transparent">
+                <div>
+                    <div class="mt-3">
+                        <div class="flex items-center gap-x-2">
+                            <svg class="flex-shrink-0 size-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6" />
+                                <path d="m12 12 4 10 1.7-4.3L22 16Z" />
+                            </svg>
+
+                            <p class="text-xs uppercase tracking-wide text-gray-900">
+                                Order price
+                            </p>
+
+                        </div>
+                        <div class="mt-1 lg:flex lg:justify-between lg:items-center">
+                            <div class="flex flex-col px-3  space-y-1 mt-1">
+                                <span class="text-[14px] font-semibold ">TotalPrice
+                                    : {{totalPrice}} EGP</span>
+                                <span class="text-[14px] font-semibold ">Items :
+                                    {{numberOfItem}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="flex flex-col justify-center px-3">
+        <div class=" px-0 md:px-8 ">
+            <div class="px-0 md:px-1">
+                <div class="flex md:flex-row flex-col-reverse gap-3 ">
+                    <div class="md:py-4 bg-white w-full ">
+                        <div class="flex flex-row  py-3 px-1 md:px-4 gap-1 border-b-2  ">
+                            <div class="w-full">
+                                <!-- Table Section -->
+                                <div class>
+                                    <!-- Card -->
+                                    <div class="flex flex-col">
+                                        <div class="-m-1.5 overflow-x-auto">
+                                            <div class="p-1.5 min-w-full inline-block align-middle">
+                                                <div
+                                                    class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+                                                    <!-- Table -->
+                                                    <table class="min-w-full divide-y divide-gray-200">
+                                                        <thead class="bg-gray-50">
+                                                            <tr>
+                                                                <th scope=" col" class=" px-6 py-3 text-start">
+                                                                    <div class="flex items-center gap-x-2">
+                                                                        <span
+                                                                            class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                                            Image
+                                                                        </span>
+                                                                    </div>
+                                                                </th>
+
+                                                                <th scope="col" class="px-0.5 py-3 text-start">
+                                                                    <div class="flex items-center gap-x-2">
+                                                                        <span
+                                                                            class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                                            Name
+                                                                        </span>
+                                                                    </div>
+                                                                </th>
+
+                                                                <th scope="col" class=" px-0.5 py-3 text-start">
+                                                                    <div class="flex items-center gap-x-2">
+                                                                        <span
+                                                                            class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                                            Description
+                                                                        </span>
+                                                                    </div>
+                                                                </th>
+
+                                                                <th scope="col" class=" px-0.5 py-3 text-start">
+                                                                    <div class="flex items-center gap-x-2">
+                                                                        <span
+                                                                            class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                                            Rate
+                                                                        </span>
+                                                                    </div>
+                                                                </th>
+
+                                                                <th scope="col" class=" px-0.5 py-3 text-start">
+                                                                    <div class="flex items-center gap-x-2">
+                                                                        <span
+                                                                            class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                                            Price
+                                                                        </span>
+                                                                    </div>
+                                                                </th>
+                                                                <th scope="col" class=" px-0.5 py-3 text-start">
+                                                                    <div class="flex items-center gap-x-2">
+                                                                        <span
+                                                                            class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                                            Quantity
+                                                                        </span>
+                                                                    </div>
+
+                                                                </th>
+                                                                <th scope="col" class=" px-0.5 py-3 text-start">
+                                                                    <div class="flex items-center gap-x-2">
+                                                                        <span
+                                                                            class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                                            Brand
+                                                                        </span>
+                                                                    </div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody class="divide-y divide-gray-200">
+                                                            <tr *ngFor="let product of orderData.order"
+                                                                class="bg-white hover:bg-gray-50">
+                                                                <td class="size-px whitespace-nowrap  ">
+                                                                    <a class href="#">
+                                                                        <div class="w-32">
+                                                                            <img class="flex-shrink-0 size-[30] w-32 h-32 "
+                                                                                [src]="product.image"
+                                                                                alt="Image Description">
+                                                                        </div>
+                                                                    </a>
+                                                                </td>
+                                                                <td class=" size-px whitespace-pre-wrap  ">
+                                                                    <a class="block p-0.5" href="#">
+                                                                        <div class="flex items-center ">
+                                                                            <p class="text-sm line-clamp-2 w-44">
+                                                                                {{product.name}}</p>
+                                                                        </div>
+                                                                    </a>
+                                                                </td>
+                                                                <td class="size-px whitespace-pre-wrap  ">
+                                                                    <a class="block p-0.5" href="#">
+                                                                        <div class="flex items-center ">
+                                                                            <p class="text-sm line-clamp-2 w-44">
+                                                                                {{product.description}}
+                                                                            </p>
+                                                                        </div>
+                                                                    </a>
+                                                                </td>
+                                                                <td class="size-px whitespace-nowrap  ">
+                                                                    <a class="block p-0.5" href="#">
+                                                                        <div class="flex items-center gap-x-3">
+                                                                            <i
+                                                                                class='bx bx-star text-yellow-200 mr-2 text-xl'></i><span>{{product.rate}}</span>
+                                                                        </div>
+                                                                    </a>
+                                                                </td>
+                                                                <td class="size-px whitespace-nowrap  ">
+                                                                    <a class="block p-0.5" href="#">
+                                                                        <span
+                                                                            class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full">
+
+                                                                            {{product.price}}
+                                                                            EGP
+                                                                        </span>
+                                                                    </a>
+                                                                </td>
+
+                                                                <td class="size-px whitespace-nowrap  ">
+                                                                    <a class="block p-0.5" href="#">
+                                                                        <div class="flex items-center gap-x-3">
+                                                                            <p>{{product.quantity}}</p>
+                                                                        </div>
+                                                                    </a>
+                                                                </td>
+                                                                <td class="size-px whitespace-nowrap  ">
+                                                                    <a class="block p-0.5" href="#">
+                                                                        <div class="flex items-center gap-x-3">
+                                                                            <p>{{product.brand}}</p>
+                                                                        </div>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class=" w-full py-4 px-2 flex items-center justify-center">
+                                                        <button type="button" [disabled]="addressUserIsActive==[]"
+                                                            (click)=" saveOrderInDatabase()"
+                                                            class="rounded-sm shadow-md bg-gray-950 text-white px-3 py-1 w-[300px]">confirm
+                                                            order</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Card -->
+                                </div>
+                                <!-- End Table Section -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Card -->
+            </div>
+            <!-- End Table Section -->
+        </div>
+    </section>
+</section>

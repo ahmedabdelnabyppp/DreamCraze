@@ -1,0 +1,153 @@
+<!-- Hire Us -->
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <!-- Grid -->
+    <div class="grid md:grid-cols-2 items-center gap-12">
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800 sm:text-4xl lg:text-5xl lg:leading-tight">
+                Category
+            </h1>
+            <p class="mt-1 md:text-lg text-gray-800">
+                can You adding and platforms turn Category into DreamCraze and experiences.
+            </p>
+            <!-- Card Section -->
+            <div class="mt-2">
+                <!-- Grid -->
+                <div class="flex flex-col px-3 scroll-smooth overflow-y-scroll space-y-3 max-h-80">
+                    <!-- Card -->
+                    <div *ngFor="let category of categoryFromResponse"
+                        class="flex flex-col bg-white border shadow-sm rounded-xl">
+                        <div class="p-4 md:p-5 flex gap-x-4">
+                            <div
+                                class="flex-shrink-0 flex justify-center items-center size-[46px] bg-gray-100 rounded-lg">
+                                <img class="w-12 h-12" [src]="category.image" alt="">
+                            </div>
+
+                            <div class="grow">
+                                <div class="flex items-center gap-x-2">
+                                    <p class="text-[15px] uppercase tracking-wide text-gray-700">
+                                        {{category.name}}
+                                    </p>
+                                    <div class="hs-tooltip">
+                                        <div class="hs-tooltip-toggle">
+                                            <svg class="flex-shrink-0 size-4 text-gray-500"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="10" />
+                                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                                <path d="M12 17h.01" />
+                                            </svg>
+                                            <span
+                                                class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm"
+                                                role="tooltip">
+                                                The {{category.name}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-1 flex items-center gap-x-2">
+                                    <div class="text-xs font-thin text-gray-800">
+                                        <p>Created At: {{ category.createdAt | date:'MMM d, y' }}</p>
+                                    </div>
+                                    <span
+                                        class="inline-flex items-center gap-x-1 py-0.5 px-2 rounded-full bg-green-100 text-green-900">
+                                        <svg class="inline-block size-4 self-center" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+                                            <polyline points="16 7 22 7 22 13" />
+                                        </svg>
+                                        <span class="inline-block text-xs font-medium">
+                                            <p> {{ category.updatedAt | date:'MMM d, y' }}</p>
+                                        </span>
+                                    </span>
+                                    <div class="text-xs font-thin text-white">
+                                        <button type="button" (click)="deleteCatogary(category.id)"
+                                            class="text-xs  font-semibold px-4 py-0.5  shadow-sm bg-blue-500 ">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="relative">
+            <!-- Card -->
+            <div
+                class="bg-gradient-to-r rounded-md shadow-sm from-sky-100 via-green-100 to-yellow-100 flex flex-col border">
+                <div class="mt-6 grid gap-4 lg:gap-6">
+                    <div class="mt-7 bg-white border border-gray-200  shadow-sm">
+                        <div class="p-4 sm:p-7">
+                            <div class="text-center">
+                                <h1 class="block text-xl font-bold text-gray-800">Create New Category</h1>
+                                <p class="mt-2 text-sm text-gray-600">
+                                </p>
+                            </div>
+                            <div class="mt-5">
+
+                                <form [formGroup]="Category_From" (ngSubmit)="sentRequestTosaveCategory()">
+                                    <div class="grid gap-y-4">
+
+                                        <div>
+                                            <label for="name" class="block text-sm mb-2">Category name</label>
+                                            <div class="relative">
+                                                <input formControlName="name" type="text" id="name" name="name"
+                                                    placeholder="Category name"
+                                                    class="border outline-none py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+
+                                                <p *ngIf="name?.touched && name.dirty && name.errors?.['errorSpecialChar']"
+                                                    class="text-red-500 text-[15px] font-thin">This Field Not contain
+                                                    SpecialChar</p>
+                                                <p *ngIf="name?.touched && name.dirty && name.errors?.['required']"
+                                                    class="text-red-500 text-[15px] font-thin">The Category name is
+                                                    requierd</p>
+                                                <p *ngIf="name?.touched && name.dirty && name.errors?.['errorName']"
+                                                    class="text-red-500 text-[15px] font-thin">The Category name contain
+                                                    number</p>
+                                            </div>
+                                            <p class="hidden text-xs text-red-600 mt-2" id="email-error">Please include
+                                                a valid email address so we can get back to you</p>
+                                        </div>
+                                        <div>
+                                            <label for="image" class="block text-sm mb-2">Category Image</label>
+                                            <div class="relative">
+                                                <input formControlName="image" type="url" id="image" name="image"
+                                                    placeholder="Url image"
+                                                    class="border outline-none  py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                                    required aria-describedby="email-error">
+                                                <p *ngIf="image?.touched && image.dirty && image.errors?.['invalidUrl']"
+                                                    class="text-red-500 text-[15px] font-thin">This Url Not valid</p>
+                                                <p *ngIf="image?.touched && image.dirty && image.errors?.['required']"
+                                                    class="text-red-500 text-[15px] font-thin">The Url is requierd</p>
+                                            </div>
+                                            <p class="hidden text-xs text-red-600 mt-2" id="email-error">Please include
+                                                a valid email address so we can get back to you</p>
+                                        </div>
+
+
+                                        <button [disabled]="Category_From.invalid" type="submit"
+                                            class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Save
+                                            Category</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- End Card -->
+        </div>
+        <!-- End Col -->
+    </div>
+    <!-- End Grid -->
+</div>
+<!-- End Hire Us -->

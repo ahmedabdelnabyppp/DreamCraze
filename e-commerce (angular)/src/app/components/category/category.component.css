@@ -1,0 +1,10 @@
+.custom-image {
+    width: 85px !important;
+    height: 80px !important;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+

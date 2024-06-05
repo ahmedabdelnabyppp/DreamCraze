@@ -1,0 +1,244 @@
+<div class=" my-10 font-[sans-serif] text-gray-800 bg-white max-w-4xl flex items-center mx-auto p-1 md:p-4">
+    <div class="grid md:grid-cols-3 items-center shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]  overflow-hidden">
+        <div class=" max-md:order-1 flex flex-col justify-center space-y-7  min-h-full  lg:px-8 px-4 py-4">
+            <div class="mb-6 flex items-center ">
+                <img class="w-48" src="../../../assets/logo-no-background.svg" alt="">
+            </div>
+            <div>
+                <h4 class="text-gray-500 text-lg font-semibold">Create Your Account</h4>
+                <p class="text-[13px] text-gray-400 mt-2">Welcome to our registration page! Get started by creating your
+                    account.</p>
+            </div>
+            <div>
+                <h4 class="text-gray-500  text-lg font-semibold">Simple & Secure Registration</h4>
+                <p class="text-[13px] text-gray-400 mt-2">Our registration process is designed to be straightforward and
+                    secure. We prioritize your privacy and data security.</p>
+            </div>
+        </div>
+        <form method="post" (ngSubmit)="createAccount()" [formGroup]="registrationForm"
+            class="relative md:col-span-2 w-full py-3 px-6 sm:px-16">
+
+            <div class="relative space-y-3">
+                <app-loading></app-loading>
+                <div>
+                    <label class="text-sm mb-2 block">Name</label>
+                    <div class="relative flex flex-col justify-center">
+                        <input name="name" type="text" required formControlName="name"
+                            class="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500"
+                            placeholder="Enter name" />
+                        <div *ngIf="name.invalid && name.touched && name.dirty"
+                            class="py-2 px-1 mt-1 bg-red-50 shadow-sm">
+                            <p *ngIf="name.touched && name.dirty && name.errors?.['required']"
+                                class="text-red-500 text-xs font-semibold px-1">Name is required.</p>
+                            <p *ngIf="name.touched && name.dirty && name.errors?.['errorName']"
+                                class="text-red-500 text-xs font-semibold px-1">Name should not contain numbers.</p>
+
+                        </div>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
+                            class="w-4 h-4 absolute top-3 right-4" viewBox="0 0 24 24">
+                            <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                            <path
+                                d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+                                data-original="#000000"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm mb-2 block">Email Id</label>
+                    <div class="relative flex flex-col justify-center">
+                        <input name="email" type="email" required formControlName="email"
+                            class="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500"
+                            placeholder="Enter email" />
+                        <div *ngIf="email.invalid && email.touched && email.dirty"
+                            class="py-2 px-1 mt-1 bg-red-50 shadow-sm">
+                            <p *ngIf="email.touched && email.dirty && email.errors?.['required']"
+                                class="text-red-500 text-xs font-semibold px-1">Email is required.</p>
+                            <p *ngIf="email.touched && email.dirty && email.errors?.['errorEmail']"
+                                class="text-red-500 text-xs font-semibold px-1">Please enter a valid <span
+                                    class="text-yellow-400">Gmail, Hotmail, or Outlook </span>email address.</p>
+                        </div>
+                        <p *ngIf="errorMessage!=''?true:false" class="text-red-500 text-xs font-semibold px-1">
+                            Please enter a valid <span class="text-yellow-400">Thie Email is use !</span></p>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
+                            class="w-4 h-4 absolute top-3 right-4" viewBox="0 0 682.667 682.667">
+                            <defs>
+                                <clipPath id="a" clipPathUnits="userSpaceOnUse">
+                                    <path d="M0 512h512V0H0Z" data-original="#000000"></path>
+                                </clipPath>
+                            </defs>
+                            <g clip-path="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
+                                <path fill="none" stroke-miterlimit="10" stroke-width="40"
+                                    d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
+                                    data-original="#000000"></path>
+                                <path
+                                    d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z"
+                                    data-original="#000000"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm mb-2 block">Phone whatsApp</label>
+                    <div class="relative flex flex-col justify-center">
+                        <input name="phone" type="number" required formControlName="phone"
+                            class="bg-white border border-gray-300 w-full text-sm px-4 py-2.5 rounded-md outline-blue-500"
+                            placeholder="Enter name" />
+                        <div *ngIf="phone.invalid && phone.touched && phone.dirty"
+                            class="py-2 px-1 mt-1 bg-red-50 shadow-sm">
+                            <p *ngIf="phone.touched && phone.dirty && phone.errors?.['required']"
+                                class="text-red-500 text-xs font-semibold px-1">phone is required.</p>
+                            <p *ngIf="phone.touched && phone.dirty && phone.errors?.['errorName']"
+                                class="text-red-500 text-xs font-semibold px-1">phone should not contain Words.</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm mb-2 block">Password</label>
+                    <!-- Strong Password -->
+                    <div class="w-full">
+                        <div class="flex mb-2">
+                            <div class="flex-1 ">
+                                <input (focus)="set_True_StrongPasswordMessage()"
+                                    (blur)="set_False_StrongPasswordMessage()" class="border " type="password"
+                                    id="hs-strong-password-with-indicator-and-hint" formControlName="password"
+                                    class="py-3 px-4 block w-full border-gray-200 border outline-none  rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="Enter password">
+
+                                <div id="hs-strong-password" data-hs-strong-password='{
+                                        "target": "#hs-strong-password-with-indicator-and-hint",
+                                        "hints": "#hs-strong-password-hints",
+                                        "stripClasses": "hs-strong-password:opacity-100 hs-strong-password-accepted:bg-teal-500 h-2 flex-auto rounded-full bg-blue-500 opacity-50 mx-1"
+                                         }' class="flex mt-2 -mx-1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="ShowStrongPasswordMessage" id="hs-strong-password-hints" class=" mb-3 px-2">
+                            <div>
+                                <span class="text-sm text-gray-800">Level:</span>
+                                <span
+                                    data-hs-strong-password-hints-weakness-text='["Empty", "Weak", "Medium", "Strong", "Very Strong", "Super Strong"]'
+                                    class="text-sm font-semibold text-gray-800"></span>
+                            </div>
+
+                            <h4 class="my-2 text-sm font-semibold text-gray-800">
+                                Your password must contain:
+                            </h4>
+
+                            <ul class=" space-y-1 text-sm text-gray-500">
+                                <li data-hs-strong-password-hints-rule-text="min-length"
+                                    class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2">
+                                    <span class="hidden" data-check="">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </span>
+                                    <span data-uncheck="">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M18 6 6 18"></path>
+                                            <path d="m6 6 12 12"></path>
+                                        </svg>
+                                    </span>
+                                    Minimum number of characters is 6.
+                                </li>
+                                <li data-hs-strong-password-hints-rule-text="lowercase"
+                                    class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2">
+                                    <span class="hidden" data-check="">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </span>
+                                    <span data-uncheck="">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M18 6 6 18"></path>
+                                            <path d="m6 6 12 12"></path>
+                                        </svg>
+                                    </span>
+                                    Should contain lowercase.
+                                </li>
+                                <li data-hs-strong-password-hints-rule-text="uppercase"
+                                    class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2">
+                                    <span class="hidden" data-check="">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </span>
+                                    <span data-uncheck="">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M18 6 6 18"></path>
+                                            <path d="m6 6 12 12"></path>
+                                        </svg>
+                                    </span>
+                                    Should contain uppercase.
+                                </li>
+                                <li data-hs-strong-password-hints-rule-text="numbers"
+                                    class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2">
+                                    <span class="hidden" data-check="">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </span>
+                                    <span data-uncheck="">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M18 6 6 18"></path>
+                                            <path d="m6 6 12 12"></path>
+                                        </svg>
+                                    </span>
+                                    Should contain numbers.
+                                </li>
+                                <li data-hs-strong-password-hints-rule-text="special-characters"
+                                    class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2">
+                                    <span class="hidden" data-check="">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </span>
+                                    <span data-uncheck="">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M18 6 6 18"></path>
+                                            <path d="m6 6 12 12"></path>
+                                        </svg>
+                                    </span>
+                                    Should contain special characters.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Strong Password -->
+                </div>
+                <div class="!mt-10">
+                    <button type="submit" [disabled]="registrationForm.invalid"
+                        class="w-full py-3 px-4 text-sm font-semibold rounded text-white bg-green-500 hover:bg-gray-800 focus:outline-none">
+                        Create an account
+                    </button>
+                </div>
+            </div>
+
+            <p class="text-sm mt-6 text-center">Already have an account? <a routerLink="/signin"
+                    class="text-blue-600 font-semibold hover:underline ml-1">Login here</a></p>
+        </form>
+    </div>
+</div>

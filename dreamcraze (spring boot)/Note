@@ -1,0 +1,152 @@
+Key Length: AES supports key lengths of 128, 192, and 256 bits, whereas DES and TripleDES support key lengths of only 56 bits and 168 bits, respectively. Longer key lengths make AES more resistant to brute-force attacks.
+
+Block Size: AES has a fixed block size of 128 bits, while DES and TripleDES have a block size of 64 bits. A larger block size makes AES less susceptible to various cryptographic attacks.
+
+Security Analysis: AES has undergone extensive security analysis and evaluation by cryptographic experts, leading to its adoption as a standard encryption algorithm by government organizations and industries worldwide. DES and TripleDES, on the other hand, have known vulnerabilities and weaknesses, especially in the context of today's computing power and security requirements.
+
+Performance: AES is more efficient in terms of both speed and resource usage compared to DES and TripleDES. Its efficient implementation makes it suitable for a wide range of applications, including those requiring high-speed encryption and decryption.
+
+Overall, AES is considered the preferred choice for encryption in modern applications due to its stronger security properties, better performance, and widespread adoption.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package com.dreamcraze.dreamcraze.service;
+
+import java.util.Random;
+
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailAuthenticationException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import com.dreamcraze.dreamcraze.exception.ApiRequestException;
+import com.dreamcraze.dreamcraze.model.Role;
+import com.dreamcraze.dreamcraze.model.User;
+import com.dreamcraze.dreamcraze.repository.UserRepository;
+import com.dreamcraze.dreamcraze.request.AuthRequest;
+import com.dreamcraze.dreamcraze.request.RegisterRequest;
+import com.dreamcraze.dreamcraze.response.AuthResponse;
+import com.dreamcraze.dreamcraze.security.jwt.JwtService;
+
+import jakarta.mail.MessagingException;
+
+@Service
+public class AuthService {
+        @Autowired
+        private UserRepository userRepository;
+        @Autowired
+        private PasswordEncoder passwordEncoder;
+        @Autowired
+        private JwtService jwtService;
+        @Autowired
+        private AuthenticationManager authenticationManager;
+        @Autowired
+        private EmailService emailService;
+
+        private String TemporalOpt;
+        private User TemporalUser;
+
+        public ResponseEntity<?> register(RegisterRequest request) throws MessagingException {
+                try {
+                    Optional<User> existingUser = userRepository.findByEmail(request.getEmail());
+                    if (existingUser.isPresent()) {
+                        throw new ApiRequestException("User with this email already exists");
+                    } else {
+                        Random randomNumber = new Random();
+                        String otp = String.format("%06d", randomNumber.nextInt(100000));
+                        this.TemporalOpt = otp;
+                        User user = User.builder()
+                                        .name(request.getName())
+                                        .password(passwordEncoder.encode(request.getPassword()))
+                                        .email(request.getEmail())
+                                        .role(Role.USER)
+                                        .phone(request.getPhone())
+                                        .build();
+                        this.TemporalUser = user;
+            
+                        String subject = "Email verification";
+                        String body = "Your Verification OTP: " + otp;
+                        this.emailService.sendEmail(user.getEmail(), subject, body);
+                    }
+                } catch (MailAuthenticationException e) {
+                    // Handle authentication failure
+                    e.printStackTrace(); // For debugging purposes, you might want to log this error
+                    // Return an appropriate response to indicate the failure
+                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Email authentication failed");
+                }
+                
+                // Return a success response if no exceptions occur
+                return ResponseEntity.ok("Registration email sent successfully");
+            }
+        public AuthResponse createUser(String Otp) {
+                if (VerifycationOpt(Otp)) {
+                        userRepository.save(TemporalUser);
+                        var jwtToken = jwtService.generateToken(TemporalUser);
+                        this.TemporalOpt = "";
+                        this.TemporalUser = null;
+                        return AuthResponse.builder()
+                                        .token(jwtToken)
+                                        .build();
+                } else {
+                        throw new ApiRequestException("is wrong in : " + "Otp");
+                }
+        }
+
+        private boolean VerifycationOpt(String Opt) {
+                if (Opt.equals(TemporalOpt)) {
+                        return true;
+                }
+                return false;
+
+        }
+
+        // public AuthResponse register(RegisterRequest request) {
+
+        // User user = User.builder()
+        // .name(request.getName())
+        // .password(passwordEncoder.encode(request.getPassword()))
+        // .email(request.getEmail())
+        // .role(Role.USER)
+        // .phone(request.getPhone())
+        // .build();
+        // userRepository.save(user);
+        // var jwtToken = jwtService.generateToken(user);
+        // return AuthResponse.builder()
+        // .token(jwtToken)
+        // .build();
+        // }
+
+        public AuthResponse Authentication(AuthRequest request) {
+                try {
+                        authenticationManager.authenticate(
+                                        new UsernamePasswordAuthenticationToken(request.getEmail(),
+                                                        request.getPassword()));
+                        User user = userRepository.findByEmail(request.getEmail())
+                                        .orElseThrow(() -> new ApiRequestException("User not found"));
+                        String jwtToken = jwtService.generateToken(user);
+                        return AuthResponse.builder()
+                                        .token(jwtToken)
+                                        .build();
+                } catch (BadCredentialsException e) {
+                        throw new ApiRequestException("Invalid email or password");
+                }
+        }
+}

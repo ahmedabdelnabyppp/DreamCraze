@@ -1,0 +1,204 @@
+<div class="pt-4 px-2 md:px-1 bg-[#ffffff] mt-1 md:mt-10" [@routingAnimation]="show">
+    <!-- image -->
+    <div class="w-full flex items-center justify-center">
+        <img class="object-cover" src="../../../assets/banner_688_Ramadan2024_PH2_SKU_Lenovo_V14__Strip_Banner_EN.webp"
+            alt="">
+    </div>
+    <div class="px-0 md:px-4 lg:px-4">
+        <div class="flex md:flex-row flex-col-reverse ml-0 md:ml-6 gap-3 py-0 md:py-2">
+            <div class="hidden md:block px-2 py-3 bg-white basis-[20%]">
+                <!-- filter -->
+                <app-filter [allUniqueBrand]="uniqueBrands"></app-filter>
+            </div>
+            <!--  -->
+            <div class="md:py-4 bg-white basis-[80%]">
+                <div class="px-1 py-2">
+                    <div class="flex items-center justify-between border-b border-gray-300 pb-7 py-2 ">
+                        <p class="font-semibold text-[16px]">
+                            Sort By:<span class="ml-2 text-blue-400">Postion</span>
+                        </p>
+
+                        <div class="font-bold text-xl">
+                            <div class="flex items-center space-x-3">
+                                <i class='bx bxs-grid' (click)="changeGrid(true)"></i>
+                                <i class='bx bx-list-ul' (click)="changeGrid(false)"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="block md:hidden w-full">
+                        <button type="button"
+                            class="py-1 w-full px-4 inline-flex items-center justify-center gap-x-2 text-sm font-semibold rounded-sm border border-gray-300  disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                            data-hs-overlay="#hs-overlay-example">
+                            <span><i class='bx bx-filter-alt text-[15px]'></i></span> Filter
+                        </button>
+                    </div>
+                </div>
+                <div  [ngClass]="{
+                    'grid-cols-2': show,
+                    'md:grid-cols-4': show,
+                    'lg:grid-cols-5': show,
+                    'grid-cols-1': !show,
+                    'md:grid-cols-1': !show,
+                    'lg:grid-cols-1': !show
+                  }" class="grid ">
+                    <div *ngFor="let laptop of laptopToCurrentShow" [ngClass]="{
+                        'flex-col':show,
+                        'flex-row':!show,
+                        'h-[170px]':!show,
+                        'h-[360px]':show,
+                        'border-r-2':show,
+                        
+                    }"
+                        class="border-b relative hover:shadow-md hover:cursor-pointer mt-5 flex bg-white dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+                        <div
+                            class="absolute  top-0 right-2 cursor-pointer  bg-gray-100 text-black px-2 py-2 flex items-center justify-center rounded-full shadow-sm text-[15px] ">
+                            <i class='bx bx-heart hover:text-red-500 transition-colors'></i>
+                        </div>
+                        <div class="absolute  top-0 left-2  px-2 py-2 flex items-center justify-center text-[16px] ">
+                            <i class='bx bx-star text-yellow-400'></i><span class="text-[13px]">{{laptop?.rate}}</span>
+                        </div>
+                        <div [ngClass]="{
+                            'h-[50%]':show,
+                            'h-[100%]':!show,
+                            'w-[35%]':!show,
+                            
+                        }" [routerLink]="['/',laptop?.description]" class="flex pb-2 justify-center">
+                            <img [ngClass]="{
+                                'w-[100%]':!show,
+                                'w-[80%]':show,
+                                'md:w-[100%]':show,
+
+                            }" class=" object-contain hover:scale-110 hover:rotate-2 transition-transform cursor-pointer max-w-sm md:max-w-full h-auto "
+                                src="{{laptop?.image}}" alt="">
+                        </div>
+                   
+                        <div [ngClass]="{
+                            'p-0':!show,
+                            'w-[65%]':!show,
+                            
+                            
+                        }" class="p-5">
+                            <a [routerLink]="laptop?.description" class="hover:underline transition-all">
+                                <p class="line-clamp-3 mt-2 text-gray-500 text-[13px] font-semibold">
+                                    {{laptop?.description}}
+                                </p>
+                            </a>
+                            <div class="flex justify-center my-4 leading-4 flex-col space-y-2  ">
+                                <div class=" text-[17px]  text-gray-500 flex items-center justify-between ">
+
+                                    <div class="flex  flex-col space-y-2">
+                                        <div>
+                                            <span class="text-black font-bold text-[12px] md:text-[14px]">EGP</span>
+                                            <span  class="text-black text-[20px] md:text-[23px] ">
+                                                {{laptop.price | number}}
+                                            </span>
+                                        </div>
+                                        <div *ngIf="laptop.offerPrice!=null" class="text-[11px] md:text-[14px] flex items-center">
+                                            <div class="text-red-800 ">
+                                                 <span class="line-through ">{{laptop.offerPrice |number}}</span>
+                                            </div>
+                                            <span
+                                                class="text-gray-400 font-bold text-[11px] ml-1 md:text-[13px]">EGP</span>
+                                        </div>
+                                        <div *ngIf="laptop.offerPrice!=null" class="text-white bg-blue-900 px-5 py-1 text-[12px] absolute bottom-0 right-0">
+                                            OFFER
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- show more -->
+                <div class="w-full flex items-center justify-center">
+                    <button (click)="showMoreProduct()"
+                        class="hover:bg-black hover:text-white transition-all text-xl font-semibold px-5  text-center py-2 mt-8 rounded-md border border-gray-300 shadow-sm">
+                        <i class='bx bx-loader-alt text-xl mr-2'></i>
+                        <span>Show More (9)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="hs-overlay-example"
+    class="px-6 py-3 hs-overlay hs-overlay-open:translate-x-0 hidden -translate-x-full fixed top-0 start-0 transition-all duration-300 transform h-full max-w-xs w-full z-[80] bg-white border-e dark:bg-gray-800 dark:border-gray-700"
+    tabindex="-1">
+    <div class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
+        <h3 class="font-bold text-gray-800 dark:text-white">
+            Offcanvas title
+        </h3>
+        <button type="button"
+            class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+            data-hs-overlay="#hs-overlay-example">
+            <span class="sr-only">Close modal</span>
+            <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+            </svg>
+        </button>
+    </div>
+    <app-filter [allUniqueBrand]="uniqueBrands"></app-filter>
+</div>
+
+<!-- 
+    grid-col-1
+    h-160
+    flex-row
+    h-[100%]
+
+ -->
+<!-- 
+     <div class="grid grid-cols-1  md:grid-cols-1 lg:grid-cols-1">
+                    <div *ngFor="let laptop of laptop"
+                        class="relative hover:shadow-md hover:cursor-pointer mt-5 h-[160px] flex  flex-row bg-white border-r-2  dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+                        <div
+                            class="absolute  top-2 right-2 cursor-pointer  bg-gray-100 text-black px-2 py-2 flex items-center justify-center rounded-full shadow-sm text-[15px] ">
+                            <i class='bx bx-heart hover:text-red-500 transition-colors'></i>
+                        </div>
+                        <div [routerLink]="laptop?.description"
+                            class="  w-[40%] flex h-[90%] justify-center">
+                            <img class="object-contain hover:scale-110 hover:rotate-2 transition-transform cursor-pointer max-w-full h-auto "
+                                src="{{laptop?.image}}" alt="">
+                        </div>
+                        <div class="p-4 md:p-5 w-[60%]">
+                            <a [routerLink]="laptop?.description" class="hover:underline transition-all">
+                                <p class="line-clamp-3  text-gray-500 text-[13px] font-semibold">
+                                    {{laptop?.description}}
+                                </p>
+                            </a>
+                            <div class="flex justify-center mt-8 leading-4 flex-col space-y-2  ">
+                                <div class=" text-[17px]  text-gray-500 flex items-center justify-between ">
+
+                                    <div>
+                                        <span class="text-black text-[23px] ">
+                                            {{laptop.price | number}}
+                                        </span>
+                                        <span class="text-black font-bold text-[14px]">EGP</span>
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <div class=" text-[13px] ml-4">
+                                        <span class="text-gray-800 font-bold line-through">
+                                            {{laptop.price |number}}
+                                        </span>
+                                        <span class="text-red-600 font-bold text-[14px]">EGP</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center px-1">
+
+                            </div>
+                        </div>
+
+ -->

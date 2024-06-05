@@ -1,0 +1,565 @@
+<section class="w-full h-full relative ">
+    <app-massage [@translateAnimation]="showMassage?'Entry':'leave'"></app-massage>
+    <div [@AnimationOpcity]="!activeUpdate" *ngIf="!activeUpdate"
+        class=" max-w-[85rem]  py-10 sm: px-0.5  lg:py-14 mx-auto">
+        <div class="  flex flex-col">
+            <div class="-m-1.5 overflow-x-auto">
+                <div class="px-2 py-2 min-w-full inline-block align-middle">
+                    <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+                        <div
+                            class=" px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
+
+                            <div class="sm:col-span-1">
+                                <label for="hs-as-table-product-review-search" class="sr-only">Search</label>
+                                <div class="relative">
+                                    <input type="text" id="hs-as-table-product-review-search"
+                                        name="hs-as-table-product-review-search"
+                                        class="py-2 px-3 ps-11 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                        placeholder="Search">
+                                    <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4">
+                                        <svg class="flex-shrink-0 size-4 text-gray-400"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="11" cy="11" r="8" />
+                                            <path d="m21 21-4.3-4.3" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="sm:col-span-2 md:grow">
+                                <div class="flex justify-end gap-x-2">
+                                    <div class="hs-dropdown [--placement:bottom-right] relative inline-block">
+                                    </div>
+
+                                    <div class="hs-dropdown [--placement:bottom-right] relative inline-block"
+                                        data-hs-dropdown-auto-close="inside">
+                                        <button id="hs-as-table-table-filter-dropdown" type="button"
+                                            class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                                            <svg class="flex-shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg"
+                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M3 6h18" />
+                                                <path d="M7 12h10" />
+                                                <path d="M10 18h4" />
+                                            </svg>
+                                            Filter
+                                            <span
+                                                class="ps-2 text-xs font-semibold text-blue-600 border-s border-gray-200">
+                                                1
+                                            </span>
+                                        </button>
+                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden divide-y divide-gray-200 min-w-48 z-10 bg-white shadow-md rounded-lg mt-2"
+                                            aria-labelledby="hs-as-table-table-filter-dropdown">
+                                            <div class="divide-y divide-gray-200">
+                                                <label for="hs-as-filters-dropdown-all" class="flex py-2.5 px-3">
+                                                    <input type="checkbox"
+                                                        class="shrink-0 mt-0.5 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                                        id="hs-as-filters-dropdown-all" checked>
+                                                    <span class="ms-3 text-sm text-gray-800">All</span>
+                                                </label>
+                                                <label for="hs-as-filters-dropdown-published" class="flex py-2.5 px-3">
+                                                    <input type="checkbox"
+                                                        class="shrink-0 mt-0.5 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                                        id="hs-as-filters-dropdown-published">
+                                                    <span class="ms-3 text-sm text-gray-800">Published</span>
+                                                </label>
+                                                <label for="hs-as-filters-dropdown-pending" class="flex py-2.5 px-3">
+                                                    <input type="checkbox"
+                                                        class="shrink-0 mt-0.5 border-gray-300 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                                        id="hs-as-filters-dropdown-pending">
+                                                    <span class="ms-3 text-sm text-gray-800">Pending</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Header -->
+
+                        <!-- Table -->
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope=" col" class=" px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                Image
+                                            </span>
+                                        </div>
+                                    </th>
+
+                                    <th scope="col" class="px-0.5 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                Name
+                                            </span>
+                                        </div>
+                                    </th>
+
+                                    <th scope="col" class=" px-0.5 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                Description
+                                            </span>
+                                        </div>
+                                    </th>
+
+                                    <th scope="col" class=" px-0.5 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                Rate
+                                            </span>
+                                        </div>
+                                    </th>
+
+                                    <th scope="col" class=" px-0.5 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                Price
+                                            </span>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class=" px-0.5 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                Quantity
+                                            </span>
+                                        </div>
+
+                                    </th>
+                                    <th scope="col" class=" px-0.5 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                                                Brand
+                                            </span>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="divide-y divide-gray-200">
+                                <tr *ngFor="let product of productPerTable" class="bg-white hover:bg-gray-50">
+                                    <td class="size-px whitespace-nowrap  ">
+                                        <a class="" href="#">
+                                            <div class="w-32">
+                                                <img class="flex-shrink-0 size-[30] w-32 h-32 " [src]="product.image"
+                                                    alt="Image Description">
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td class=" size-px whitespace-pre-wrap  ">
+                                        <a class="block p-0.5" href="#">
+                                            <div class="flex items-center ">
+                                                <p class="text-sm line-clamp-2 w-44">{{product.name}}</p>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td class="size-px whitespace-pre-wrap  ">
+                                        <a class="block p-0.5" href="#">
+                                            <div class="flex items-center ">
+                                                <p class="text-sm line-clamp-2 w-44">
+                                                    {{product.description}}
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap  ">
+                                        <a class="block p-0.5" href="#">
+                                            <div class="flex items-center gap-x-3">
+                                                <i
+                                                    class='bx bx-star text-yellow-200 mr-2 text-xl'></i><span>{{product.rate}}</span>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap  ">
+                                        <a class="block p-0.5" href="#">
+                                            <span
+                                                class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full">
+
+                                                {{product.price}} EGP
+                                            </span>
+                                        </a>
+                                    </td>
+
+                                    <td class="size-px whitespace-nowrap  ">
+                                        <a class="block p-0.5" href="#">
+                                            <div class="flex items-center gap-x-3">
+                                                <p>{{product.quantity}}</p>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap  ">
+                                        <a class="block p-0.5" href="#">
+                                            <div class="flex items-center gap-x-3">
+                                                <p>{{product.brand}}</p>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap  ">
+                                        <div class="block p-0.5" href="#">
+                                            <button (click)="deleteProductFromTable(product.id)"
+                                                class="hover:bg-red-500 hover:text-white transition-all px-2 py-1 bg-gray-100 text-gray-600 text-sm ">Delete</button>
+                                        </div>
+                                    </td>
+                                    <td class="size-px whitespace-nowrap  ">
+                                        <div class="block p-0.5" href="#">
+                                            <button (click)="setProductDataInFormUpdateProduct(product)"
+                                                (click)="active()"
+                                                class="hover:bg-gray-500 hover:text-white transition-all px-2 py-1 bg-blue-500 text-gray-50 text-sm  shadow-sm">update</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div
+                            class=" px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
+                            <div class="max-w-sm ">
+                                <span class="text-gray-700 font-thin text-xl ">{{totalItems}}</span>
+                            </div>
+
+                            <div>
+                                <div class="inline-flex gap-x-2">
+                                    <button type="button" (click)="prevPage()"
+                                        class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m15 18-6-6 6-6" />
+                                        </svg>
+                                        Prev
+                                    </button>
+
+                                    <button type="button" (click)="nextPage()"
+                                        class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                                        Next
+                                        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m9 18 6-6-6-6" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Footer -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Card -->
+    </div>
+    <!-- End Table Section -->
+
+
+    <div [@AnimationOpcity]="!activeUpdate" *ngIf="!activeUpdate" class="my-3">
+        <p class="my-3 font-semibold text-xl md:text-2xl text-gray-700 "><i
+                class='bx bxs-add-to-queue text-blue-500 text-xl mr-3'></i>Create <span class="text-red-600">New</span>
+            Product</p>
+        <form method="post" action="#" (ngSubmit)="postProduct()" [formGroup]="productForm">
+            <div class="bg-white rounded-xl shadow">
+                <div class="relative h-40 rounded-t-xl  bg-image bg-no-repeat bg-cover bg-center">
+                    <div class="absolute top-0 end-0 p-4">
+                    </div>
+                </div>
+                <div class="pt-0 p-4 sm:pt-0 sm:p-7">
+                    <!-- Grid -->
+                    <div class="space-y-4 sm:space-y-6">
+
+                        <div class="flex-col md:flex-row flex items-center space-x-3">
+                            <div class="space-y-2 w-full md:basis-[50%]">
+                                <label for="af-submit-app-project-name"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Product name
+                                </label>
+                                <input formControlName="name" id="af-submit-app-project-name" type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="Enter project name">
+                                <p *ngIf="name?.touched && name.dirty && name.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The product name is requierd</p>
+                                <p *ngIf="name?.touched && name.dirty && name.errors?.['errorSpecialChar']"
+                                    class="text-red-500 text-[15px] font-thin">This Field Not contain SpecialChar</p>
+                            </div>
+
+                            <div class="space-y-2 w-full md:basis-[50%]">
+                                <label for="af-submit-project-url"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    image URL
+                                </label>
+
+                                <input formControlName="image" id="af-submit-project-url" type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="https://example.so">
+                                <p *ngIf="image?.touched && image.dirty && image.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The product image is requierd</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="af-submit-app-upload-images"
+                                class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                Product Description
+                            </label>
+                            <textarea formControlName="description"
+                                class="border outline-none py-3 px-4 block w-full bg-sky-50 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                rows="3" placeholder="This is a Product Description"></textarea>
+                            <p *ngIf="description?.touched && description.dirty && description.errors?.['required']"
+                                class="text-red-500 text-[15px] font-thin">The product image is requierd</p>
+
+                        </div>
+                        <div class="flex items-center space-x-2 flex-col md:flex-row">
+
+                            <div class="space-y-2 w-full basis-[50%]">
+                                <label for="af-submit-app-category"
+                                    class=" inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Category
+                                </label>
+
+                                <select id="af-submit-app-category"
+                                    class="border outline-none py-2 px-3 pe-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    formControlName="category">
+                                    <option [ngValue]="null" disabled selected>Select a category</option>
+                                    <option *ngFor="let category of categoryInSelect" [value]="category.id">
+                                        {{category.name}}</option>
+                                </select>
+
+                            </div>
+                            <div class="space-y-2 w-full basis-[50%]">
+                                <label for="af-submit-app-project-name"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Brand name
+                                </label>
+                                <input formControlName="brand" id="af-submit-app-brand" type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="Enter Brand name (dell , hp , ect..)">
+                                <p *ngIf="brand.touched && brand.dirty && brand.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The product brand is requierd</p>
+                                <p *ngIf="brand?.touched && brand.dirty && brand.errors?.['errorSpecialChar']"
+                                    class="text-red-500 text-[15px] font-thin">This brand should Not contain SpecialChar
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-2 flex-col md:flex-row">
+                            <div class="space-y-2 w-full basis-[40%]">
+                                <label for="af-submit-app-project-name"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Product Price
+                                </label>
+                                <input formControlName="price" id="af-submit-app-price" type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="Price">
+                                <p *ngIf="price?.touched && price.dirty && price.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The product price is requierd</p>
+                                <p *ngIf="price.touched && price.dirty && price.errors?.['errorNumber']"
+                                    class="text-red-500 text-xs font-semibold px-1">phone should not contain Words.</p>
+
+                            </div>
+                            <div class="space-y-2 w-full basis-[30%]">
+                                <label for="af-submit-app-project-name"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Product rate
+                                </label>
+                                <input formControlName="rate" id="af-submit-app-rate" type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="Enter Product rate">
+                                <p *ngIf="rate?.touched && rate.dirty && rate.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The rate is requierd</p>
+                                <p *ngIf="rate.touched && rate.dirty && rate.errors?.['errorNumber']"
+                                    class="text-red-500 text-xs font-semibold px-1">rate should not contain Words.</p>
+
+                            </div>
+                            <div class="space-y-2 w-full basis-[20%]">
+                                <label for="af-submit-app-quantity"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Product Quantity
+                                </label>
+                                <input formControlName="quantity" id="af-submit-app-project-name" type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="Enter Product quantity">
+                                <p *ngIf="quantity?.touched && quantity.dirty && quantity.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The quantity is requierd</p>
+                                <p *ngIf="quantity.touched && quantity.dirty && quantity.errors?.['errorNumber']"
+                                    class="text-red-500 text-xs font-semibold px-1">phone should not contain Words.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 flex justify-center gap-x-2">
+                        <button type="submit" [disabled]="productForm.invalid"
+                            class=" py-3 px-9 inline-flex items-center gap-x-2 text-sm font-semibold rounded-sm w-[300px] justify-center  border border-transparent bg-black text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                            {{massage}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+    <div [@AnimationOpcity]="activeUpdate" *ngIf="activeUpdate" class="my-3">
+
+        <p class="my-3 font-semibold text-xl md:text-2xl text-gray-700 "><i
+                class='bx bxs-add-to-queue text-blue-500 text-xl mr-3'></i>Update <span
+                class="text-red-600">Product</span>
+        </p>
+        <form method="post" action="#" (ngSubmit)="updateProduct()" [formGroup]="productForm">
+            <div class="bg-white rounded-xl shadow">
+
+                <div class="pt-0 p-4 sm:pt-0 sm:p-7">
+                    <!-- Grid -->
+                    <div class="space-y-4 sm:space-y-6">
+
+                        <div class="flex-col md:flex-row flex items-center space-x-3">
+                            <div class="space-y-2 w-full md:basis-[50%]">
+                                <label for="af-submit-app-project-name"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Product name
+                                </label>
+                                <input formControlName="id" type="hidden" id="productId" name="productId" [value]="ProductDataInFormUpdateProduct.id">
+
+                                <input value='' formControlName="name" id="af-submit-app-project-name"
+                                    type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="Enter project name">
+                                <p *ngIf="name?.touched && name.dirty && name.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The product name is requierd</p>
+                                <p *ngIf="name?.touched && name.dirty && name.errors?.['errorSpecialChar']"
+                                    class="text-red-500 text-[15px] font-thin">This Field Not contain SpecialChar</p>
+                            </div>
+
+                            <div class="space-y-2 w-full md:basis-[50%]">
+                                <label for="af-submit-project-url"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    image URL
+                                </label>
+
+                                <input formControlName="image" id="af-submit-project-url" type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="https://example.so">
+                                <p *ngIf="image?.touched && image.dirty && image.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The product image is requierd</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="af-submit-app-upload-images"
+                                class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                Product Description
+                            </label>
+                            <textarea formControlName="description"
+                                class="border outline-none py-3 px-4 block w-full bg-sky-50 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                rows="3" placeholder="This is a Product Description"></textarea>
+                            <p *ngIf="description?.touched && description.dirty && description.errors?.['required']"
+                                class="text-red-500 text-[15px] font-thin">The product image is requierd</p>
+
+                        </div>
+                        <div class="flex items-center space-x-2 flex-col md:flex-row">
+
+                            <div class="space-y-2 w-full basis-[50%]">
+                                <label for="af-submit-app-category"
+                                    class=" inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Category
+                                </label>
+
+                                <select id="af-submit-app-category"
+                                    class="border outline-none py-2 px-3 pe-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    formControlName="category">
+                                    <option [ngValue]="null" disabled selected>Select a category</option>
+                                    <option *ngFor="let category of categoryInSelect" [value]="category.id">
+                                        {{category.name}}</option>
+                                </select>
+
+                            </div>
+                            <div class="space-y-2 w-full basis-[50%]">
+                                <label for="af-submit-app-project-name"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Brand name
+                                </label>
+                                <input formControlName="brand" id="af-submit-app-brand" type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="Enter Brand name (dell , hp , ect..)">
+                                <p *ngIf="brand.touched && brand.dirty && brand.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The product brand is requierd</p>
+                                <p *ngIf="brand?.touched && brand.dirty && brand.errors?.['errorSpecialChar']"
+                                    class="text-red-500 text-[15px] font-thin">This brand should Not contain SpecialChar
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-2 flex-col md:flex-row">
+                            <div class="space-y-2 w-full basis-[40%]">
+                                <label for="af-submit-app-project-name"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Product Price
+                                </label>
+                                <input formControlName="price" id="af-submit-app-price" type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="Price">
+                                <p *ngIf="price?.touched && price.dirty && price.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The product price is requierd</p>
+                                <p *ngIf="price.touched && price.dirty && price.errors?.['errorNumber']"
+                                    class="text-red-500 text-xs font-semibold px-1">phone should not contain Words.</p>
+
+                            </div>
+                            <div class="space-y-2 w-full basis-[30%]">
+                                <label for="af-submit-app-project-name"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Product rate
+                                </label>
+                                <input formControlName="rate" id="af-submit-app-rate" type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="Enter Product rate">
+                                <p *ngIf="rate?.touched && rate.dirty && rate.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The rate is requierd</p>
+                                <p *ngIf="rate.touched && rate.dirty && rate.errors?.['errorNumber']"
+                                    class="text-red-500 text-xs font-semibold px-1">rate should not contain Words.</p>
+
+                            </div>
+                            <div class="space-y-2 w-full basis-[20%]">
+                                <label for="af-submit-app-quantity"
+                                    class="inline-block text-sm font-medium text-gray-800 mt-2.5">
+                                    Product Quantity
+                                </label>
+                                <input formControlName="quantity" id="af-submit-app-project-name" type="text"
+                                    class="border outline-none py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                    placeholder="Enter Product quantity">
+                                <p *ngIf="quantity?.touched && quantity.dirty && quantity.errors?.['required']"
+                                    class="text-red-500 text-[15px] font-thin">The quantity is requierd</p>
+                                <p *ngIf="quantity.touched && quantity.dirty && quantity.errors?.['errorNumber']"
+                                    class="text-red-500 text-xs font-semibold px-1">phone should not contain Words.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 flex justify-center gap-x-2">
+                        <button type="submit" [disabled]="productForm.invalid"
+                            class=" py-3 px-9 inline-flex items-center gap-x-2 text-sm font-semibold rounded-sm w-[300px] justify-center  border border-transparent bg-black text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                            {{massage}}
+                        </button>
+                        <button type="button" (click)="back()"
+                            class=" py-3 px-9 inline-flex items-center gap-x-2 text-sm font-semibold rounded-sm w-[300px] justify-center  border border-transparent bg-blue-800 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                            Cansel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</section>

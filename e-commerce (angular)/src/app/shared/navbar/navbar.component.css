@@ -1,0 +1,11 @@
+::-webkit-scrollbar {
+    display: none;
+}
+.activeLink{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-inline:7px;
+    border: 2px solid #3f3838af;
+    transition: all linear .1s;
+    
+}

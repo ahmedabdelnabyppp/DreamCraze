@@ -1,0 +1,33 @@
+<div *ngIf="isLoadingAddress$ | async"
+  class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-50 bg-opacity-50 z-50">
+  <!-- Card -->
+  <div
+    class="min-w-[400px] flex flex-col gap-y-2 lg:gap-y-2 p-4 md:p-5 bg-[#f7f7f7] border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-800">
+    <div class="inline-flex justify-center items-center">
+      <span class="size-2 inline-block bg-green-500 rounded-full me-2"></span>
+      <span class="text-xs font-semibold uppercase text-gray-600 dark:text-neutral-400">Successful</span>
+    </div>
+    <div class="flex overflow-hidden  items-center justify-center">
+      <img class="w-36 h-32 " src="../../../assets/Success.gif" alt="">
+    </div>
+    <dl class="flex justify-center items-center divide-x divide-gray-200 dark:divide-neutral-800">
+      <dd class="text-start ps-3">
+        <span class="text-sm font-semibold text-gray-800 ">Operation successfully</span>
+      </dd>
+    </dl>
+  </div>
+  <!-- End Card -->
+</div>
+<div *ngIf="isLoadingReqester$ | async"
+  class="absolute  w-full h-full flex items-center opacity-95 justify-center z-20 bg-gray-50 ">
+  <div class="loader"></div>
+</div>
+
+
+<div *ngIf="isLoadingActiveAddress$ | async" class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-50 bg-opacity-50 z-50">
+  <div class="min-w-[400px] flex flex-col gap-y-2 lg:gap-y-2 p-4 md:p-5    rounded-xl dark:bg-neutral-900 dark:border-neutral-800">
+    <div class=" flex items-center opacity-95 justify-center z-40  ">
+      <div class="loader"></div>
+    </div>
+  </div>
+</div>

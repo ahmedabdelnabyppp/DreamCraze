@@ -1,0 +1,139 @@
+<div class=" py-2 mt-5 bg-gray-50 ">
+  <h3 class="px-3 md:px-2 py-1  font-thin text-2xl flex items-center space-x-2"><i
+      class='text-gray-500 bx bx-map-alt'></i> <span>Shopping Address</span></h3>
+  <app-loading [message]="massage"></app-loading>
+  <div class=" w-full mx-auto">
+    <div>
+      <form (ngSubmit)="createAddress()" [formGroup]="addresForm" method="post"
+        class="bg-white rounded p-4 px-4 md:p-8 mb-6">
+        <div class="grid gap-5 gap-y-5 text-sm grid-cols-1 md:grid-cols-4">
+          <div class="md:col-span-4">
+            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-4">
+              <div class="relative md:col-span-4">
+                <label for="address">Street</label>
+                <textarea [ngClass]="{
+                  'invalid-control':street.touched && street.dirty && street.errors
+                }" formControlName="street" type="text" name="address" id="address" autocomplete="off"
+                  class="outline-none h-20 pt-2 border mt-1 px-4 w-full bg-gray-50" value=""
+                  placeholder="Address(Area / Street Name)"></textarea>
+                <p *ngIf="street.touched && street.dirty && street.errors?.['required']"
+                  class="text-red-500 text-[15px] font-thin">The Street name is requierd</p>
+              </div>
+
+              <div class="relative md:col-span-4">
+                <label for="city">City</label>
+                <input [ngClass]="{
+                      'invalid-control':city.touched && city.dirty && city.errors
+                }" formControlName="city" type="text" name="city" id="city"
+                  class=" outline-none h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                <p *ngIf="city.touched && city.dirty && city.errors?.['required']"
+                  class="text-red-500 text-[15px] font-thin">The city is requierd</p>
+                <p *ngIf="city.touched && city.dirty && city.errors?.['errorName']"
+                  class="text-red-500 text-[15px] font-thin">This Field Not contain Number</p>
+
+              </div>
+              <div class="relative md:col-span-2">
+                <label for="Nearest landmark">Landmark</label>
+                <input [ngClass]="{
+                  'invalid-control':landmark.touched && landmark.dirty && landmark.errors}" formControlName="landmark"
+                  type="text" name="Nearest" id="Nearest"
+                  class=" outline-blue-400 h-10 border mt-1 rounded px-4 w-full bg-gray-50" value=""
+                  placeholder="Nearest landmark" />
+                <p *ngIf="landmark.touched && landmark.dirty && landmark.errors?.['required']"
+                  class="text-red-500 text-[15px] font-thin">The city is requierd</p>
+                <p *ngIf="landmark.touched && landmark.dirty && landmark.errors?.['errorName']"
+                  class="text-red-500 text-[15px] font-thin">This Field Not contain Number</p>
+
+              </div>
+              <div class="relative md:col-span-2">
+                <label for="Nearest landmark">Country</label>
+                <input [ngClass]="{
+                  'invalid-control':country.touched && country.dirty && country.errors}" formControlName="country"
+                  name="country" id="country" placeholder="Country"
+                  class=" outline-blue-400 h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                <p *ngIf="country.touched && country.dirty && country.errors?.['required']"
+                  class="text-red-500 text-[15px] font-thin">The country is requierd</p>
+                <p *ngIf="country.touched && country.dirty && country.errors?.['errorName']"
+                  class="text-red-500 text-[15px] font-thin">This Field Not contain Number</p>
+
+              </div>
+              <div for="type address" class="md:col-span-5 my-2 font-semibold text-sm">Add delivery instruction</div>
+              <div class="md:col-span-5 flex flex-col md:flex-row ">
+                <select formControlName="deliveryInstruction"
+                  class="py-3  outline-none px-4 pe-9 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none">
+                  <option value="Home (7am-9pm , all days)" selected="">Home (7am-9pm , all days)</option>
+                  <option value="Office(9am-6pm , Weekdays)">Office(9am-6pm , Weekdays)</option>
+
+                </select>
+                <div class="md:w-[40%]  text-right flex-none">
+                  <div class="md:mx-3 mt-3 md:mt-0  w-full flex justify-center items-center">
+                    <button [disabled]="addresForm.invalid"
+                      class="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-8 w-full md:w-[400px] rounded">Add
+                      address</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- get all address -->
+<section *ngIf="User_Address.length!=0">
+  <div class="flex items-center justify-center text-gray-600 text-2xl font-extralight">
+    <p>Special addresses</p>
+  </div>
+  <div class="grid grid-cols-2 px-1 md:px-8">
+    <div *ngFor="let userAddress of User_Address" class="col-span-2 w-full md:col-span-1 px-4 py-4  mx-auto">
+      <!-- Card -->
+      <div class="flex flex-col">
+        <div class="-m-1.5 overflow-x-auto">
+          <div class="p-1.5 w-full inline-block align-middle">
+            <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+              <!-- Body -->
+              <div class=" w-full  flex flex-col py-2 mx-auto px-6 ">
+                <div class="flex justify-center items-center size-[46px] bg-gray-100 rounded-lg">
+                  <svg class="flex-shrink-0 size-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" width="16"
+                    height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                      d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27zm.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0l-.509-.51z" />
+                    <path
+                      d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
+                  </svg>
+                </div>
+                <h2 class="mt-5 font-semibold text-gray-800">
+                  {{userAddress?.country}}/{{userAddress?.city}}
+                </h2>
+                <p class="mt-2 text-sm text-gray-600">
+                  {{userAddress?.street}}
+                </p>
+                <div>
+                  <p class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline font-medium"
+                    href="../docs/index.html">
+                    {{userAddress?.landmark}}
+                  </p>
+                </div>
+                <div class="mt-5 flex space-x-2 gap-2">
+                  <button type="button" (click)="activeAddress(userAddress?.id)"
+                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                    Use a address
+                  </button>
+                  <button type="button" (click)="deleteAddress(userAddress?.id)"
+                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-gray-100 text-gray-600 shadow-sm hover:bg-red-100 disabled:opacity-50 disabled:pointer-events-none">
+                    Delete address
+                  </button>
+                </div>
+              </div>
+              <!-- End Body -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card -->
+    </div>
+    <!-- End Table Section -->
+  </div>
+</section>

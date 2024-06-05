@@ -1,0 +1,37 @@
+<div class="space-y-3  mt-5 flex flex-col items-center justify-center">
+    <img class="w-52 h-52" src="../../../../../assets/plugins_email-verification-plugin.png" alt="">
+    <div class="bg-blue-50 w-60 text-center text-blue-300 shadow-sm rounded-xl">
+        Verify your email address
+    </div>
+    <div>
+        <p class="w-[400px] text-gray-600 text-center  font-thin text-[18px] md:text-xl">
+            You've entered as the email address for your account.
+            Please verify this email address by clicking the button below.
+        </p>
+    </div>
+    <div class="flex space-x-3" data-hs-pin-input="">
+        <input type="text" [(ngModel)]="verificationNumber[0]"
+            class=" outline-blue-100 shadow-sm block w-[42px] py-2 text-center border  border-gray-200 rounded-sm text-sm  disabled:opacity-50 disabled:pointer-events-none"
+            data-hs-pin-input-item="" autofocus="">
+        <input type="text" [(ngModel)]="verificationNumber[1]"
+            class=" outline-blue-100 shadow-sm block w-[42px] py-2 text-center border  border-gray-200 rounded-sm text-sm  disabled:opacity-50 disabled:pointer-events-none"
+            data-hs-pin-input-item="">
+        <input type="text" [(ngModel)]="verificationNumber[2]"
+            class=" outline-blue-100 shadow-sm block w-[42px] py-2 text-center border  border-gray-200 rounded-sm text-sm  disabled:opacity-50 disabled:pointer-events-none"
+            data-hs-pin-input-item="">
+        <input type="text" [(ngModel)]="verificationNumber[3]"
+            class=" outline-blue-100 shadow-sm block w-[42px] py-2 text-center border  border-gray-200 rounded-sm text-sm  disabled:opacity-50 disabled:pointer-events-none"
+            data-hs-pin-input-item="">
+        <input type="text" [(ngModel)]="verificationNumber[4]"
+            class=" outline-blue-100 shadow-sm block w-[42px] py-2 text-center border  border-gray-200 rounded-sm text-sm  disabled:opacity-50 disabled:pointer-events-none"
+            data-hs-pin-input-item="">
+        <input type="text" [(ngModel)]="verificationNumber[5]"
+            class=" outline-blue-100 shadow-sm block w-[42px] py-2 text-center border  border-gray-200 rounded-sm text-sm  disabled:opacity-50 disabled:pointer-events-none"
+            data-hs-pin-input-item="">
+    </div>
+    <div class="flex flex-col items-center justify-center">
+        <p class="text-black font-thin text-sm">Resent Agin?</p>
+    </div>
+    <button type="submit" (click)="verifyEmail()"
+        class="w-[189px] px-8 py-1 text-yellow-50 bg-black rounded-md shadow-sm">Verify your email</button>
+</div>

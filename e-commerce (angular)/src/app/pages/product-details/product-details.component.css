@@ -1,0 +1,58 @@
+ .owl-theme .owl-nav.disabled + .owl-dots {
+    background-color: #000000da !important;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 17px;
+    width: 178px;
+}
+
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+    background: #2f6ea9 !important;
+    width: 13px !important;
+    height: 8px !important;
+    border-radius: 40px !important;
+    transform: scale(1.1) !important;
+    transition: .3s linear !important;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+    width: 8px !important;
+    height: 8px !important;
+    margin: 1px 4px !important;
+    background: #D6D6D6 !important;
+    display: block !important;
+    transition: opacity .1s ease !important;
+    border-radius: -4px !important;
+}
+
+.owl-theme .owl-nav {
+    margin-top: 10px;
+    position: absolute;
+    top: 40%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.owl-theme .owl-nav [class*=owl-] {
+    color: #FFF;
+    font-size: 14px;
+    margin: 5px;
+    padding: 4px 7px;
+    background: #ffffff;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgb(105, 105, 105);
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

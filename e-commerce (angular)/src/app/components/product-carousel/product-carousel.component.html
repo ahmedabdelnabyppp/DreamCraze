@@ -1,0 +1,76 @@
+<div class="">
+    <div class="items-center px-2 flex justify-between">
+        <!-- <p class="text-gray-600 opacity-90 font-thin text-3xl px-8 capitalize">{{Category}}</p> -->
+        <!-- <span class="w-[50%]  h-[1px]  bg-gray-400 shadow-md rounded-md"></span> -->
+        <!-- <p class="text-green-600 font-thin px-8">See All</p> -->
+    </div>
+    <div *ngIf="LaptopProduct && LaptopProduct.length > 0" class="h-[380px] overflow-hidden">
+        <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let laptop of LaptopProduct;let index=index">
+                <ng-template carouselSlide>
+                    <div
+                        class="relative rounded-md mt-5 h-[360px] flex  flex-col bg-white border-r md:border-l  dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+                        <div class="space-x-3 absolute flex flex-col top-0 right-0  ">
+
+                            <div *ngIf="laptop.brand!=null" class="bg-blue-900 text-white rounded-l-sm  px-3 py-0.5 shadow-md text-[13px]">
+                                {{laptop?.brand}}
+                            </div>
+                        </div>
+
+                        <div [routerLink]="'details/'+laptop?.id" class="flex h-[50%] justify-center">
+                            <img class="object-contain w-60Per hover:scale-[.94] hover:rotate-2 transition-transform cursor-pointer max-w-md h-auto "
+                                src="{{laptop?.image}}" alt="">
+                        </div>
+                        <div class="p-4 md:p-5">
+                            <div class="flex items-center space-x-1">
+                                <i class='bx bxs-star text-yellow-300 text-xl font-bold'></i>
+                                <p>{{laptop?.rate}}</p>
+                                <div *ngIf="laptop.offerPrice!=null"
+                                    class="bg-red-500 text-white px-3 py-0.5 shadow-sm text-[12px]">
+                                    Save <span class="text-[11px]">{{laptop.price-laptop.offerPrice}}</span>
+                                </div>
+                            </div>
+                            <a [routerLink]="laptop?.description" class="hover:underline transition-all">
+                                <p class="line-clamp-2 mt-2 text-gray-600 text-[11px] md:text-[13px] font-semibold">
+                                    {{laptop?.description}}
+                                </p>
+                            </a>
+
+                            <div class="flex my-2 justify-center leading-3 flex-col space-y-2  mt-2">
+                                <div class=" text-[17px]  text-gray-500 flex items-center space-x-1 ">
+                                    <div *ngIf="laptop?.offerPrice!=null">
+                                        <span class="text-black text-[15px] md:text-[20px] font-semibold ">
+                                            {{laptop?.offerPrice | number}}
+                                        </span>
+                                        <span class="text-black font-bold text-[12px]">EGP</span>
+                                    </div>
+                                    <div *ngIf="laptop?.offerPrice==null">
+                                        <span class="text-black text-[15px] md:text-[20px] font-semibold ">
+                                            {{laptop?.price | number}}
+                                        </span>
+                                        <span class="text-black font-bold text-[12px]">EGP</span>
+                                    </div>
+                                    <div *ngIf="laptop?.offerPrice!=null" class=" text-[13px] md:text-[15px] ml-4">
+                                        <span class="text-gray-800 font-semibold line-through">
+                                            {{laptop?.price |number}}
+                                        </span>
+                                        <span class="text-red-600 font-bold text-[11px]">EGP</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <button (click)="AddToCart(laptop, index)"
+                                class="overflow-hidden absolute  right-1 bottom-4 flex items-center rounded-full justify-center px-2.5  py-2.5 bg-blue-500 text-slate-700 shadow-md transition-all ">
+                                <div *ngIf="!loading[index] " class="flex items-center justify-center">
+                                    <i class='bx bxs-cart-add text-xl text-white'></i>
+                                </div>
+                                <div class="" [class.loader]="loading[index]"></div>
+                            </button>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </owl-carousel-o>
+    </div>
+</div>

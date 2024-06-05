@@ -1,0 +1,83 @@
+<div *ngIf="imagelist && imagelist.length > 0" class="overflow-hidden h-[150px] md:h-[400px]">
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let slide of imagelist">
+      <ng-template carouselSlide [id]="slide">
+        <div class="">
+          <div class="w-full bg-cover h-[150px] md:h-[400px] ">
+            <img class="h-full w-full" [src]="slide" alt="">
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>
+<app-category></app-category>
+
+<div class="grid grid-cols-12 gap-2 mx-0 md:mx-3">
+  <div class="border bg-gradient-to-r from-teal-100 via-white to-white border-gray-300 py-6 col-span-12 md:col-span-6 shadow-md">
+    <div class="w-full flex flex-col md:flex-row  space-x-4 px-4  md:h-[280px]">
+      <div class="w-full flex items-center justify-center md:basis-[50%]">
+        <img class="w-[200px] md:w-auto " src="../../../assets/alienware-desktop-aurora-r16-notebook-m18-800x620-image-v2.avif" alt="">
+      </div>
+      <div class=" basis-[80%] md:basis-[50%] flex flex-col justify-center space-y-2">
+        <h3 class="text-[19px] md:text-[30px]">Alienware Gaming Desktops</h3>
+        <p class="text-[13px] md:text-[16px] font-bold">Immersive Gaming Experiences Starting at 50,000 EGP</p>
+        <p class="text-sm line-clamp-2 text-gray-600">Experience high-performance gaming with iconic designs and intelligently
+          engineered desktops</p>
+          <div>
+            <button  [routerLink]="'/product/laptop'" class="hover:bg-black transition-all px-10 w-full py-1 bg-[#0063b8] text-white shadow-md">Shop Laptops</button>
+          </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="border bg-gradient-to-l from-teal-100 via-white to-white border-gray-300 py-6 col-span-12 md:col-span-6 shadow-md">
+    <div class="w-full flex flex-col md:flex-row  space-x-4 px-4  md:h-[280px]">
+      <div class="w-full flex items-center justify-center md:basis-[50%]">
+        <img class="w-[200px] md:w-auto " src="../../../assets/cs2401g0051-668570-gl-cs-co-aw3225qf-site-banner-800x620-right.avif" alt="">
+      </div>
+      <div class=" basis-[80%] md:basis-[50%] flex flex-col justify-center space-y-2">
+        <h3 class="text-[19px] md:text-[30px]">Gaming Monitors</h3>
+        <p class="text-[13px] md:text-[16px] font-bold">Performance gaming displays</p>
+        <p class="text-sm line-clamp-2 md:line-clamp-4 text-gray-600">Lose yourself in pulse-pounding gameplay with our performance gaming monitors featuring high refresh rates, vivid color and sharp visuals.</p>
+          <div>
+            <button [routerLink]="'/product/gamemonitor'" (click)="navigateToRoute()" class="hover:bg-black transition-all px-10 w-full py-1 bg-[#0063b8] text-white shadow-md">Shop Now</button>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- product carousel -->
+<app-product-carousel [Category]="'laptop'"></app-product-carousel>
+<section class="my-1 section1 h-[110px]  md:h-[320px]">
+</section>
+<app-product-carousel [Category]="'smartwatch'"></app-product-carousel>
+
+<section class="flex bg-slate-50  flex-col md:flex-row px-2  items-center mt-10 p-6">
+  <div class="w-full md:w-[40%] px-2 text-2xl font-semibold flex-col justify-center items-center h-full ">
+    <div class="flex flex-col leading-5">
+      <span class="text-[15px] md:text-[23px] mb-2 w-full text-center">Tvs</span>
+      <span class="text-yellow-400 text-[14px] w-full text-center">Outstanding details on TCL screens</span>
+      <p class="text-[10px] md:text-[12px] flex text-center font-semibold w-full ">The data was quoted
+        from the TCL laboratory.
+        Different
+        test environments/standards may cause deviations in
+        results</p>
+    </div>
+    <img class="w-full h-[150px] md:h-[280px]" src="../../../assets/4277fa6580a29776db5e09e65cbe9ad7.avif" alt="">
+  </div>
+  <div class="w-full md:w-[60%]"> <app-product-carousel [Category]="'smartTv'"></app-product-carousel></div>
+</section>
+
+<section class=" flex  flex-col justify-center px-2 md:px-10">
+  <div class="relative  py-2 px-3 md:px-5 flex flex-col md:flex-row md:items-center md:space-x-8 ">
+    <div class="flex items-center space-x-2 ">
+      <img src="../../../assets/gaming-monitor-30x30.webp" alt="">
+      <h2 class="text-xl ">MONITORS</h2>
+    </div>
+  </div>
+</section>
+<app-product-carousel [Category]="'gamingmonitor'"></app-product-carousel>

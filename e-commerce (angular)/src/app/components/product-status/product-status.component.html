@@ -1,0 +1,75 @@
+<div  [@translateAnimation]="ShowProductStutes && ProductIsAdded[1]=='succuss'?'Entry':'leave'" 
+  class="fixed  bottom-0 end-0 z-[60] sm:max-w-md w-full mx-auto  p-1 md:p-6">
+  <!-- Card -->
+  <div class="p-4 bg-white shadow-2xl ">
+    <div class="flex justify-between items-center gap-x-5 sm:gap-x-10">
+      <h2 class="font-semibold text-gray-800 dark:text-white">
+        <i class='bx bxs-badge-check mr-2' style='color:#3ae45f'></i>The item is Added in Cart
+      </h2>
+      <button type="button"
+        class="inline-flex rounded-full p-2 text-gray-500 hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-600 dark:hover:bg-gray-800 dark:text-gray-300"
+        data-hs-remove-element="#cookies-with-stacked-buttons">
+        <span class="sr-only">Dismiss</span>
+        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="flex items-center gap-2 mt-2">
+      <img class="w-[83px] h-[83px] rounded-md"
+        [src]="ProductIsAdded[0]?.image"
+        alt="">
+      <p class="text-sm text-gray-800 line-clamp-2">
+       {{ProductIsAdded[0]?.description}}
+      </p>
+
+    </div>
+    <div class="mt-5 mb-2 w-full flex gap-x-2">
+
+      <div class="grid w-full">
+        <button type="button"
+          class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none   ">
+          View shopping Cart
+        </button>
+      </div>
+    </div>
+    <div class="grid w-full">
+      <button type="button"
+        class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none ">
+        Order Now
+      </button>
+    </div>
+
+  </div>
+  <!-- End Card -->
+</div>
+
+
+<div  [@translateAnimation]="ShowProductStutes && ProductIsAdded[1]=='Exist'?'Entry':'leave'" 
+  class="fixed bottom-0 end-0 z-[60] sm:max-w-md w-full mx-auto  p-1 md:p-6">
+  <!-- Card -->
+  <div class="p-4 bg-white/[.6] backdrop-blur-lg rounded-xl shadow-2xl ">
+    <div class="flex justify-between items-center gap-x-5 sm:gap-x-10">
+      <h2 class="font-semibold text-gray-800 dark:text-white">
+        <i class='bx bxs-badge-check mr-2' style='color:#3ae45f'></i>The item is Added in Cart
+      </h2>
+      <button type="button"
+        class="inline-flex rounded-full p-2 text-gray-500 hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-gray-600 dark:hover:bg-gray-800 dark:text-gray-300"
+        data-hs-remove-element="#cookies-with-stacked-buttons">
+        <span class="sr-only">Dismiss</span>
+        <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="flex items-center gap-2 mt-2">
+      <p class="text-sm text-red-800 line-clamp-2">
+       The Product in cart!
+      </p>
+    </div>
+
+</div>
